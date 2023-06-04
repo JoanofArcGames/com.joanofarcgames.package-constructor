@@ -8,4 +8,4 @@
 - This changelog
 - Readme with brief overview of this package, installation instructions, and notes
 - This package is now licensed with CC-BY-4.0
-- 
+- Easily modifiable, right in Editor, config
