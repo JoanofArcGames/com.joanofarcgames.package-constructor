@@ -14,7 +14,7 @@ namespace JoanofArcGames.PackageConstructor
 	    
 	    [Indent(1)]
 	    [DisplayName("Version*")]
-	    public string version = "0.0.1-pre.1";
+	    public string version = "0.1.0-pre.1";
 	    [Indent(1)]
 	    [DisplayName("Company Name*")]
 	    public string companyName = "SampleCompany";
@@ -38,6 +38,10 @@ namespace JoanofArcGames.PackageConstructor
 	    [Indent(1)]
 	    [DisplayName("Licenses URL")]
 	    public string licensesUrl = "";
+	    [Indent(1)]
+	    public string license;
+	    [Indent(1)]
+	    public bool hideInEditor;
 
 	    [Space(10)]
 	    
@@ -62,75 +66,26 @@ namespace JoanofArcGames.PackageConstructor
 	    public string authorUrl = "";
 	    
 	    [Space(10)]
-	    [Header("Delete redundant directories")]
+	    [Header("Directories")]
 	    [Space(7)]
 	    
 	    [Indent(1)]
 	    [DisplayName("/Editor/")]
-	    public bool deleteEditor;
+	    public bool editor;
 	    [Indent(1)]
 	    [DisplayName("/Runtime/")]
-	    public bool deleteRuntime;
+	    public bool runtime;
 	    [Indent(1)]
-	    [DisplayName("/Tests/")]
-	    public bool deleteTests;
-
-	    [Indent(2)]
-	    [ShowIf("deleteTests", true)]
 	    [DisplayName("/Tests/Editor/")]
-	    public bool deleteTestsEditor;
-	    [Indent(2)]
-	    [ShowIf("deleteTests", true)]
+	    public bool testsEditor;
+	    [Indent(1)]
 	    [DisplayName("/Tests/Runtime/")]
-	    public bool deleteTestsRuntime;
-
-	    [Space(10)]
-	    [Header("Cleanup")]
-	    [Space(7)]
-	    
-	    [Indent(1)]
-	    [DisplayName("Delete Convertor on complete")]
-	    public bool deleteSelf;
-	    [Indent(1)]
-		[DisplayName("Delete SampleScript.cs files")]
-	    public bool deleteSampleScripts;
+	    public bool testsRuntime;
 
 	    [Space(30)]
 	    
-	    [HelpBox("Caution: don't put any valuable files inside package root directory and any of the subdirectories prior to conversion. They will be lost.", MessageType.Warning)]
 	    [ButtonInvoke(typeof(ConstructionSystem), nameof(ConstructionSystem.Construct), null, typeof(ConfigSO), nameof(GetConfigData))]
-	    public bool convert;
-
-	    private bool deleteTestsCurrentState;
-
-	    private void Awake()
-	    {
-		    deleteTestsCurrentState = deleteTests;
-	    }
-
-	    private void OnValidate()
-	    {
-		    if (deleteTests != deleteTestsCurrentState)
-		    {
-			    if (deleteTests)
-			    {
-				    deleteTestsEditor = true;
-				    deleteTestsRuntime = true;
-			    }
-			    else
-			    {
-				    deleteTestsEditor = false;
-				    deleteTestsRuntime = false;
-			    }
-		    }
-		    
-		    if (deleteTestsEditor && deleteTestsRuntime)
-            {
-                deleteTests = true;
-            }
-		    
-		    deleteTestsCurrentState = deleteTests;
-	    }
+	    public bool construct;
 
 	    public ConfigData GetConfigData()
 	    {
