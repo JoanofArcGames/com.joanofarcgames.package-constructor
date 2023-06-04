@@ -1,5 +1,7 @@
 # JAG Package Constructor Changelog
 
+### This package complies with semantic versioning
+
 ## [0.1.0] - TBD
 
 ### Added
