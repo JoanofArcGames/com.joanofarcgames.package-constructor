@@ -1,0 +1,5 @@
+/.idea/
+*.meta
+!/Editor/**/*.meta
+!/Runtime/**/*.meta
+!/Tests/**/*.meta
