@@ -1,6 +1,6 @@
 {
   "name": "com.joanofarcgames.package-constructor",
-  "version": "0.1.0-dev.18",
+  "version": "0.1.0-dev.19",
   "displayName": "JAG Package Constructor",
   "description": "Use this package to save time when creating new Unity packages.\nAutomatically lay out directories and asmdefs",
   "changelogUrl": "https://github.com/JoanofArcGames/com.joanofarcgames.package-constructor/blob/main/CHANGELOG.md",

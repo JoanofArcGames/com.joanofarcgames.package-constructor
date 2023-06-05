@@ -19,21 +19,30 @@ namespace JoanofArcGames.PackageConstructor
 
 			if (!ValidateConfig(config))
 			{
-				Debug.LogError("Aborting construction. Correct errors in config file and try again");
+				Debug.LogError("Fatal: provided config contains invalid data.\nCorrect config file and try again.\nAborting construction");
 				return;
 			}
 
 			ManifestData data = ConfigToManifest(config);
-			CreateRoot(data.name, out string root);
+			if (!CreateRoot(data.name, out string root))
+			{
+				Debug.LogError($"Fatal: package with constructed name: {data.name} already exists.\nAborting construction");
+				return;
+			}
 			
 			Debug.Log("Construction has finished successfully");
 		}
 
-		private static void CreateRoot(string name, out string root)
+		private static bool CreateRoot(string name, out string root)
 		{
 			string packagesPath = Path.Combine(Directory.GetParent(Application.dataPath)!.FullName, "Packages");
 			root = Path.Combine(packagesPath, name);
+			if (Directory.Exists(root))
+			{
+				return false;
+			}
 			Directory.CreateDirectory(root);
+			return true;
 		}
 
 		private static bool ValidateConfig(ConfigData config)
