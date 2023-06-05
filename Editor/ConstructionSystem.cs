@@ -27,16 +27,35 @@ namespace JoanofArcGames.PackageConstructor
 			string projectRoot = Directory.GetParent(Application.dataPath)!.FullName;
 			string templatesPath = Path.Combine(projectRoot, "Packages", "com.joanofarcgames.package-constructor", "Editor", "Templates");
 			
+			
 			if (!CreateRoot(projectRoot, data.name, out string root))
 			{
 				Debug.LogError($"Fatal: package with constructed name: {data.name} already exists.\nAborting construction");
 				return;
 			}
+			
+			string testsPath = Path.Combine(root, "Tests");
 
-			CreateDirectoryLayout(root, ref config);
+			CreateDirectoryLayout(root, testsPath, ref config);
 			CreateTemplateDocumentation(templatesPath, root, ref config);
+			CreateBlankScripts(root, testsPath, ref config);
 			
 			Debug.Log("Construction has finished successfully");
+		}
+
+		private static void CreateBlankScripts(string root, string testsPath, ref ConfigData config)
+		{
+			if (config.blankScripts)
+			{
+				string dir = Path.Combine(root, "Editor");
+				if (Directory.Exists(dir)) File.WriteAllText(Path.Combine(dir, "BlankScript.cs"), "");
+				dir = Path.Combine(root, "Runtime");
+				if (Directory.Exists(dir)) File.WriteAllText(Path.Combine(dir, "BlankScript.cs"), "");
+				dir = Path.Combine(testsPath, "Editor");
+				if (Directory.Exists(dir)) File.WriteAllText(Path.Combine(dir, "BlankScript.cs"), "");
+				dir = Path.Combine(testsPath, "Runtime");
+				if (Directory.Exists(dir)) File.WriteAllText(Path.Combine(dir, "BlankScript.cs"), "");
+			}
 		}
 
 		private static void CreateTemplateDocumentation(string templatesPath, string root, ref ConfigData config)
@@ -52,14 +71,13 @@ namespace JoanofArcGames.PackageConstructor
 			}
 		}
 
-		private static void CreateDirectoryLayout(string root, ref ConfigData config)
+		private static void CreateDirectoryLayout(string root, string testsPath, ref ConfigData config)
 		{
 			if (config.editor) Directory.CreateDirectory(Path.Combine(root, "Editor"));
 			if (config.runtime) Directory.CreateDirectory(Path.Combine(root, "Runtime"));
-
-			string tests = Path.Combine(root, "Tests");
-			if (config.testsEditor) Directory.CreateDirectory(Path.Combine(tests, "Editor"));
-			if (config.testsRuntime) Directory.CreateDirectory(Path.Combine(tests, "Runtime"));
+			
+			if (config.testsEditor) Directory.CreateDirectory(Path.Combine(testsPath, "Editor"));
+			if (config.testsRuntime) Directory.CreateDirectory(Path.Combine(testsPath, "Runtime"));
 
 			if (config.samples) Directory.CreateDirectory(Path.Combine(root, "Samples~"));
 			if (config.documentation) Directory.CreateDirectory(Path.Combine(root, "Documentation~"));
