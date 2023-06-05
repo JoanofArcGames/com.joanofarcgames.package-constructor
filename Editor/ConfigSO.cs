@@ -74,13 +74,19 @@ namespace JoanofArcGames.PackageConstructor
 	    public bool editor;
 	    [Indent(1)]
 	    [DisplayName("/Runtime/")]
-	    public bool runtime;
+	    public bool runtime = true;
 	    [Indent(1)]
 	    [DisplayName("/Tests/Editor/")]
 	    public bool testsEditor;
 	    [Indent(1)]
 	    [DisplayName("/Tests/Runtime/")]
 	    public bool testsRuntime;
+	    [Indent(1)]
+	    [DisplayName("/Samples~")]
+	    public string samples;
+	    [Indent(1)]
+	    [DisplayName("/Documentation~/")]
+	    public string documentation;
 
 	    [Space(30)]
 	    
