@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Config
   m_EditorClassIdentifier: 
   version: 0.1.0-pre.1
-  companyName: SampleCompany
+  companyName: SampleCompanyTwo
   packageName: SamplePackage
   displayName: 
   description: 
@@ -24,12 +24,15 @@ MonoBehaviour:
   licensesUrl: 
   license: 
   hideInEditor: 0
+  dependencies: []
   keywords: []
   authorName: 
   authorEmail: 
   authorUrl: 
   editor: 0
-  runtime: 0
-  testsEditor: 0
-  testsRuntime: 0
+  runtime: 1
+  testsEditor: 1
+  testsRuntime: 1
+  samples: 0
+  documentation: 0
   construct: 0

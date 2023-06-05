@@ -83,10 +83,10 @@ namespace JoanofArcGames.PackageConstructor
 	    public bool testsRuntime;
 	    [Indent(1)]
 	    [DisplayName("/Samples~")]
-	    public string samples;
+	    public bool samples;
 	    [Indent(1)]
 	    [DisplayName("/Documentation~/")]
-	    public string documentation;
+	    public bool documentation;
 
 	    [Space(30)]
 	    
@@ -120,7 +120,9 @@ namespace JoanofArcGames.PackageConstructor
 			    editor = editor,
 			    runtime = runtime,
 			    testsEditor = testsEditor,
-			    testsRuntime = testsRuntime
+			    testsRuntime = testsRuntime,
+			    samples = samples,
+			    documentation = documentation
 		    };
 	    }
     }
