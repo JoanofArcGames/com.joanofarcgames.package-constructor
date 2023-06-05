@@ -39,7 +39,7 @@ namespace JoanofArcGames.PackageConstructor
 	    [DisplayName("Licenses URL")]
 	    public string licensesUrl = "";
 	    [Indent(1)]
-	    public string license;
+	    public string license = "";
 	    [Indent(1)]
 	    public bool hideInEditor;
 
@@ -80,14 +80,25 @@ namespace JoanofArcGames.PackageConstructor
 	    public bool testsEditor;
 	    [Indent(1)]
 	    [DisplayName("/Tests/Runtime/")]
-	    public bool testsRuntime;
+	    public bool testsRuntime = true;
 	    [Indent(1)]
-	    [DisplayName("/Samples~")]
+	    [DisplayName("/Samples~/")]
 	    public bool samples;
 	    [Indent(1)]
 	    [DisplayName("/Documentation~/")]
-	    public bool documentation;
+	    public bool documentation = true;
+	    
+	    [Space(10)]
+	    [Header("Miscellaneous")]
+	    [Space(7)]
 
+	    [Indent(1)]
+	    [DisplayName("Include template documentation")]
+	    public bool templateDocs;
+	    [Indent(1)]
+	    [DisplayName("Include blank scripts")]
+	    public bool blankScripts;
+	    
 	    [Space(30)]
 	    
 	    [ButtonInvoke(typeof(ConstructionSystem), nameof(ConstructionSystem.Construct), null, typeof(ConfigSO), nameof(GetConfigData))]
