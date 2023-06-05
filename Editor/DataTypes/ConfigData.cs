@@ -24,6 +24,8 @@ namespace JoanofArcGames.PackageConstructor
 		public bool testsRuntime;
 		public bool samples;
 		public bool documentation;
+		public bool templateDocs;
+		public bool blankScripts;
 	}
 }
 #endif

@@ -134,7 +134,9 @@ namespace JoanofArcGames.PackageConstructor
 			    testsEditor = testsEditor,
 			    testsRuntime = testsRuntime,
 			    samples = samples,
-			    documentation = documentation
+			    documentation = documentation,
+			    templateDocs = templateDocs,
+			    blankScripts = blankScripts
 		    };
 	    }
     }

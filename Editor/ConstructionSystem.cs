@@ -12,7 +12,7 @@ namespace JoanofArcGames.PackageConstructor
 		private const string UnityVersionPattern = @"^([1-9]\d{3})\.([1-9]\d{0})$";
 		private const string UnityReleasePattern = @"^(\d{0,2})([abf])(\d{0,2})$";
 		private const string PackagePattern = @"^([a-z0-9\-_]+)(\.[a-z0-9\-_]+)(\.[a-z0-9\-_]+)+$";
-		
+
 		public static void Construct(ConfigData config)
 		{
 			Debug.Log("Started construction");
@@ -24,16 +24,32 @@ namespace JoanofArcGames.PackageConstructor
 			}
 
 			ManifestData data = ConfigToManifest(ref config);
+			string projectRoot = Directory.GetParent(Application.dataPath)!.FullName;
+			string templatesPath = Path.Combine(projectRoot, "Packages", "com.joanofarcgames.package-constructor", "Editor", "Templates");
 			
-			if (!CreateRoot(data.name, out string root))
+			if (!CreateRoot(projectRoot, data.name, out string root))
 			{
 				Debug.LogError($"Fatal: package with constructed name: {data.name} already exists.\nAborting construction");
 				return;
 			}
 
 			CreateDirectoryLayout(root, ref config);
+			CreateTemplateDocumentation(templatesPath, root, ref config);
 			
 			Debug.Log("Construction has finished successfully");
+		}
+
+		private static void CreateTemplateDocumentation(string templatesPath, string root, ref ConfigData config)
+		{
+			string docsPath = Path.Combine(root, "Documentation~");
+			if (config.templateDocs && Directory.Exists(docsPath))
+			{
+				File.Copy
+				(
+					Path.Combine(templatesPath, "template-documentation.md"),
+					Path.Combine(docsPath, $"{config.packageName}.md")
+				);
+			}
 		}
 
 		private static void CreateDirectoryLayout(string root, ref ConfigData config)
@@ -49,9 +65,9 @@ namespace JoanofArcGames.PackageConstructor
 			if (config.documentation) Directory.CreateDirectory(Path.Combine(root, "Documentation~"));
 		}
 
-		private static bool CreateRoot(string name, out string root)
+		private static bool CreateRoot(string projectRoot, string name, out string root)
 		{
-			string packagesPath = Path.Combine(Directory.GetParent(Application.dataPath)!.FullName, "Packages");
+			string packagesPath = Path.Combine(projectRoot, "Packages");
 			root = Path.Combine(packagesPath, name);
 			if (Directory.Exists(root))
 			{
