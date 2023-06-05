@@ -17,20 +17,33 @@ namespace JoanofArcGames.PackageConstructor
 		{
 			Debug.Log("Started construction");
 
-			if (!ValidateConfig(config))
+			if (!ValidateConfig(ref config))
 			{
 				Debug.LogError("Fatal: provided config contains invalid data.\nCorrect config file and try again.\nAborting construction");
 				return;
 			}
 
-			ManifestData data = ConfigToManifest(config);
+			ManifestData data = ConfigToManifest(ref config);
+			
 			if (!CreateRoot(data.name, out string root))
 			{
 				Debug.LogError($"Fatal: package with constructed name: {data.name} already exists.\nAborting construction");
 				return;
 			}
+
+			CreateDirectoryLayout(root, ref config);
 			
 			Debug.Log("Construction has finished successfully");
+		}
+
+		private static void CreateDirectoryLayout(string root, ref ConfigData config)
+		{
+			if (config.editor) Directory.CreateDirectory(Path.Combine(root, "Editor"));
+			if (config.runtime) Directory.CreateDirectory(Path.Combine(root, "Runtime"));
+
+			string tests = Path.Combine(root, "Tests");
+			if (config.testsEditor) Directory.CreateDirectory(Path.Combine(tests, "Editor"));
+			if (config.testsRuntime) Directory.CreateDirectory(Path.Combine(tests, "Runtime"));
 		}
 
 		private static bool CreateRoot(string name, out string root)
@@ -45,7 +58,7 @@ namespace JoanofArcGames.PackageConstructor
 			return true;
 		}
 
-		private static bool ValidateConfig(ConfigData config)
+		private static bool ValidateConfig(ref ConfigData config)
 		{
 			bool valid = true;
 
@@ -54,7 +67,7 @@ namespace JoanofArcGames.PackageConstructor
 			return valid;
 		}
 
-		private static ManifestData ConfigToManifest(ConfigData config)
+		private static ManifestData ConfigToManifest(ref ConfigData config)
 		{
 			return new ManifestData
 			{
