@@ -44,6 +44,9 @@ namespace JoanofArcGames.PackageConstructor
 			string tests = Path.Combine(root, "Tests");
 			if (config.testsEditor) Directory.CreateDirectory(Path.Combine(tests, "Editor"));
 			if (config.testsRuntime) Directory.CreateDirectory(Path.Combine(tests, "Runtime"));
+
+			if (config.samples) Directory.CreateDirectory(Path.Combine(root, "Samples~"));
+			if (config.documentation) Directory.CreateDirectory(Path.Combine(root, "Documentation~"));
 		}
 
 		private static bool CreateRoot(string name, out string root)
