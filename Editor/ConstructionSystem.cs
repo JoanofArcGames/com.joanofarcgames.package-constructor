@@ -1,4 +1,6 @@
 #if UNITY_EDITOR
+using System.IO;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace JoanofArcGames.PackageConstructor
@@ -22,14 +24,16 @@ namespace JoanofArcGames.PackageConstructor
 			}
 
 			ManifestData data = ConfigToManifest(config);
-			
+			CreateRoot(data.name, out string root);
 			
 			Debug.Log("Construction has finished successfully");
 		}
 
-		private static void CreateRoot(string name)
+		private static void CreateRoot(string name, out string root)
 		{
-			
+			string packagesPath = Path.Combine(Directory.GetParent(Application.dataPath)!.FullName, "Packages");
+			root = Path.Combine(packagesPath, name);
+			Directory.CreateDirectory(root);
 		}
 
 		private static bool ValidateConfig(ConfigData config)
@@ -45,8 +49,52 @@ namespace JoanofArcGames.PackageConstructor
 		{
 			return new ManifestData
 			{
-
+				name = "com." + config.companyName.PascalToKebabCase() + "." + config.packageName.PascalToKebabCase(),
+				version = config.version,
+				displayName = config.displayName,
+				description = config.description,
+				unity = config.unityVersion,
+				unityRelease = config.unityRelease,
+				documentationUrl = config.docsUrl,
+				changelogUrl = config.changelogUrl,
+				licensesUrl = config.licensesUrl,
+				license = config.license,
+				hideInEditor = config.hideInEditor,
+				dependencies = config.dependencies,
+				keywords = config.keywords,
+				author = config.author
 			};
+		}
+		
+		private static string PascalToKebabCase(this string value)
+		{
+			string output = Regex.Replace(
+					value,
+					"(?<!^)([A-Z][a-z]|(?<=[a-z])[A-Z0-9])",
+					"-$1",
+					RegexOptions.Compiled)
+				.Trim()
+				.ToLower();
+
+			char previous = '\0';
+			for (int i = 0; i < output.Length; i++)
+			{
+				if (output[i] == '-' && previous == '.')
+				{
+					output = output.Remove(i, 1);
+				}
+				else
+				{
+					previous = output[i];
+				}
+			}
+
+			if (output[^1] == '.')
+			{
+				output = output.Remove(output.Length - 1, 1);
+			}
+
+			return output;
 		}
 	}
 }
