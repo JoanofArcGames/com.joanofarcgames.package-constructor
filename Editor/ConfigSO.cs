@@ -91,7 +91,30 @@ namespace JoanofArcGames.PackageConstructor
 	    {
 		    return new ConfigData
 		    {
-			    
+			    version = version,
+			    companyName = companyName,
+			    packageName = packageName,
+			    displayName = displayName,
+			    description = description,
+			    unityVersion = unityVersion,
+			    unityRelease = unityRelease,
+			    docsUrl = docsUrl,
+			    changelogUrl = changelogUrl,
+			    licensesUrl = licensesUrl,
+			    license = license,
+			    hideInEditor = hideInEditor,
+			    dependencies = dependencies,
+			    keywords = keywords,
+			    author = new Author
+			    {
+				    name = authorName,
+				    email = authorEmail,
+				    url = authorUrl
+			    },
+			    editor = editor,
+			    runtime = runtime,
+			    testsEditor = testsEditor,
+			    testsRuntime = testsRuntime
 		    };
 	    }
     }
