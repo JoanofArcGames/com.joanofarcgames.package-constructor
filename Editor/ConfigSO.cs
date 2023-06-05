@@ -91,7 +91,8 @@ namespace JoanofArcGames.PackageConstructor
 	    [Space(10)]
 	    [Header("Miscellaneous")]
 	    [Space(7)]
-
+	    
+		[ShowIf(nameof(documentation))]
 	    [Indent(1)]
 	    [DisplayName("Include template documentation")]
 	    public bool templateDocs;
