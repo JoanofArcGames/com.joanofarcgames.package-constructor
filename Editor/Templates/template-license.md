@@ -1,0 +1,4 @@
+- https://en.wikipedia.org/wiki/Software_license
+- https://opensource.org
+- https://spdx.org/licenses
+- https://docs.unity3d.com/2022.3/Documentation/Manual/cus-legal.html

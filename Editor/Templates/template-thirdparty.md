@@ -1,0 +1,1 @@
+https://docs.unity3d.com/2022.3/Documentation/Manual/cus-legal.html#:~:text=terms%20and%20conditions.-,Third%20Party%20Notices,-If%20your%20package
