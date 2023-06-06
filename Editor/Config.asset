@@ -15,26 +15,41 @@ MonoBehaviour:
   version: 0.1.0-pre.1
   companyName: SampleCompany
   packageName: SamplePackage
-  displayName: 
-  description: 
-  unityVersion: 
-  unityRelease: 
-  docsUrl: 
-  changelogUrl: 
-  licensesUrl: 
-  license: 
+  displayName: lolkek
+  description: cheburek
+  unityVersion: 2022.3
+  unityRelease: 0f1
+  docsUrl: vk.com
+  changelogUrl: instagram.com
+  licensesUrl: facebook.com
+  license: CC-BY-4.0
   hideInEditor: 0
-  dependencies: []
-  keywords: []
-  authorName: 
-  authorEmail: 
-  authorUrl: 
+  dependencies:
+  - name: com.unity.burst
+    version: 1.6.4
+  - name: 
+    version: 
+  - name: com.unity.entities
+    version: 1.0.10
+  keywords:
+  - 
+  - 
+  - lolkeyword
+  - 
+  - kekkeyword
+  authorName: danilka
+  authorEmail: vasyappukin@mail.ru
+  authorUrl: vk.com
   editor: 0
   runtime: 1
   testsEditor: 0
   testsRuntime: 1
   samples: 0
   documentation: 1
+  readmeMD: 1
+  changelogMD: 1
+  licenseMD: 1
+  thirdpartyMD: 1
   templateDocs: 1
   blankScripts: 1
   construct: 0
