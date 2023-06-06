@@ -40,8 +40,15 @@ namespace JoanofArcGames.PackageConstructor
 			CreateTemplateDocumentation(root, templatesPath, ref config);
 			CreateBlankScripts(root, testsPath, ref config);
 			CreateAsmdefs(root, templatesPath, ref config);
+			CreatePackageManifest(root, ref data);
 			
 			Debug.Log("Construction has finished successfully");
+		}
+
+		private static void CreatePackageManifest(string root, ref ManifestData data)
+		{
+			string manifest = ManifestSerializationSystem.GetJsonString(data);
+			File.WriteAllText(Path.Combine(root, "package.json"), manifest);
 		}
 
 		private static void CreateSamplesDirectory(string root, ref ConfigData config)
