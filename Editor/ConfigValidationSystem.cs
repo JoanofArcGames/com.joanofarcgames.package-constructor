@@ -16,12 +16,6 @@ namespace JoanofArcGames.PackageConstructor
 			bool valid = true;
 			string f = "Config validation failed.\n";
 
-			if (!config.editor && !config.runtime)
-			{
-				Debug.LogError($"{f}Either /Editor/ or /Runtime/ directories should be created.\nBoth flags are false");
-				valid = false;
-			}
-			
 			if (!Regex.IsMatch(config.companyName, PascalCasePattern))
 			{
 				if (config.companyName == "")
