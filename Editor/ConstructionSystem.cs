@@ -41,8 +41,17 @@ namespace JoanofArcGames.PackageConstructor
 			CreateBlankScripts(root, testsPath, ref config);
 			CreateAsmdefs(root, templatesPath, ref config);
 			CreatePackageManifest(root, ref data);
+			CreateMarkdownFiles(root, templatesPath, ref config);
 			
 			Debug.Log("Construction has finished successfully");
+		}
+
+		private static void CreateMarkdownFiles(string root, string templatesPath, ref ConfigData config)
+		{
+			if (config.readmeMD) File.Copy(Path.Combine(templatesPath, "template-readme.md"), Path.Combine(root, "README.md"));
+			if (config.changelogMD) File.Copy(Path.Combine(templatesPath, "template-changelog.md"), Path.Combine(root, "CHANGELOG.md"));
+			if (config.licenseMD) File.Copy(Path.Combine(templatesPath, "template-license.md"), Path.Combine(root, "LICENSE.md"));
+			if (config.thirdpartyMD) File.Copy(Path.Combine(templatesPath, "template-thirdparty.md"), Path.Combine(root, "Third Party Notices.md"));
 		}
 
 		private static void CreatePackageManifest(string root, ref ManifestData data)

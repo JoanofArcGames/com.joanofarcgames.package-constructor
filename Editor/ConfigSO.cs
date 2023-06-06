@@ -153,7 +153,11 @@ namespace JoanofArcGames.PackageConstructor
 			    samples = samples,
 			    documentation = documentation,
 			    templateDocs = templateDocs,
-			    blankScripts = blankScripts
+			    blankScripts = blankScripts,
+			    readmeMD = readmeMD,
+			    changelogMD = changelogMD,
+			    licenseMD = licenseMD,
+			    thirdpartyMD = thirdpartyMD
 		    };
 	    }
     }

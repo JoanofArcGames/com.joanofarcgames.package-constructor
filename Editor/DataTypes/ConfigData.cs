@@ -26,6 +26,10 @@ namespace JoanofArcGames.PackageConstructor
 		public bool documentation;
 		public bool templateDocs;
 		public bool blankScripts;
+		public bool readmeMD;
+		public bool changelogMD;
+		public bool licenseMD;
+		public bool thirdpartyMD;
 	}
 }
 #endif
