@@ -116,7 +116,7 @@ namespace JoanofArcGames.PackageConstructor
 	    [Indent(1)]
 	    [DisplayName("Include blank scripts")]
 	    public bool blankScripts = true;
-	    
+
 	    [Space(30)]
 	    
 	    [ButtonInvoke(typeof(ConstructionSystem), nameof(ConstructionSystem.Construct), null, typeof(ConfigSO), nameof(GetConfigData))]
