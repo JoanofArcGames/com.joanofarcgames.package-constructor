@@ -36,11 +36,17 @@ namespace JoanofArcGames.PackageConstructor
 			string testsPath = Path.Combine(root, "Tests");
 
 			CreateDirectoryLayout(root, testsPath, ref config);
+			CreateSamplesDirectory(root, ref config);
 			CreateTemplateDocumentation(root, templatesPath, ref config);
 			CreateBlankScripts(root, testsPath, ref config);
 			CreateAsmdefs(root, templatesPath, ref config);
 			
 			Debug.Log("Construction has finished successfully");
+		}
+
+		private static void CreateSamplesDirectory(string root, ref ConfigData config)
+		{
+			if (config.samples) Directory.CreateDirectory(Path.Combine(root, "Samples~"));
 		}
 
 		private static void CreateAsmdefs(string root, string templatesPath, ref ConfigData config)
