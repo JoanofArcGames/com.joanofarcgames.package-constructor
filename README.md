@@ -1,3 +1,7 @@
+# Important statement
+
+### This package is by no means stable or production-ready. Please report any issues you encounter
+
 # Overview
 
 This package is a full-featured solution to automate creation of new Unity packages.
@@ -162,5 +166,10 @@ Generates a blank `.cs` script alongside each `.asmdef` file. Otherwise Unity wi
 
 Display informational messages in console regarding construction. This doesn't affect config validation errors
 
-# Notes
+# Developer notes
 
+- Currently, I am unaware of how to disable warnings regarding asmdefs with no scripts associated, other than including placeholder scripts.
+If you have ideas, communicate them to me
+- Currently, constructor doesn't add entry for samples into `package.json`.
+It doesn't make sense to do so, because when you just start your package, you don't have any samples.
+Probably I will add functionality to auto-generate entries for samples and inject them to existing `package.json`
