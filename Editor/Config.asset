@@ -31,7 +31,7 @@ MonoBehaviour:
   authorUrl: 
   editor: 0
   runtime: 1
-  testsEditor: 1
+  testsEditor: 0
   testsRuntime: 1
   samples: 0
   documentation: 1

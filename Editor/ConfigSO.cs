@@ -95,10 +95,10 @@ namespace JoanofArcGames.PackageConstructor
 		[ShowIf(nameof(documentation))]
 	    [Indent(1)]
 	    [DisplayName("Include template documentation")]
-	    public bool templateDocs;
+	    public bool templateDocs = true;
 	    [Indent(1)]
 	    [DisplayName("Include blank scripts")]
-	    public bool blankScripts;
+	    public bool blankScripts = true;
 	    
 	    [Space(30)]
 	    
