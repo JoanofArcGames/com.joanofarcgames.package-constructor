@@ -87,6 +87,23 @@ namespace JoanofArcGames.PackageConstructor
 	    [Indent(1)]
 	    [DisplayName("/Documentation~/")]
 	    public bool documentation = true;
+
+	    [Space(10)]
+	    [Header("Markdown files")]
+	    [Space(7)]
+
+	    [Indent(1)]
+	    [DisplayName("README.md")]
+	    public bool readmeMD = true;
+	    [Indent(1)]
+	    [DisplayName("CHANGELOG.md")]
+	    public bool changelogMD = true;
+	    [Indent(1)]
+	    [DisplayName("LICENSE.md")]
+	    public bool licenseMD = true;
+	    [Indent(1)]
+	    [DisplayName("Third Party Notices.md")]
+	    public bool thirdpartyMD = true;
 	    
 	    [Space(10)]
 	    [Header("Miscellaneous")]
