@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Config
   m_EditorClassIdentifier: 
   version: 0.1.0-pre.1
-  companyName: SampleCompanyTwo
+  companyName: SampleCompany
   packageName: SamplePackage
   displayName: 
   description: 
@@ -34,5 +34,7 @@ MonoBehaviour:
   testsEditor: 1
   testsRuntime: 1
   samples: 0
-  documentation: 0
+  documentation: 1
+  templateDocs: 1
+  blankScripts: 1
   construct: 0
