@@ -1,6 +1,8 @@
 # Important statement
 
-### This package is by no means stable or production-ready. Please report any issues you encounter
+### This package is by no means stable or production-ready
+It might break under unpredictable circumstances. It might not contain features you expect. It might contain bugs
+<br />If you encounter any issues, if you have features you'd want included, if you've found a bug, please, ***file a GitHub issue***
 
 # Overview
 
@@ -8,7 +10,7 @@ This package is a full-featured solution to automate creation of new Unity packa
 It carefully follows [recommended package layout](https://docs.unity3d.com/2022.2/Documentation/Manual/cus-layout.html).
 The goal is to reduce friction and number of boilerplate-kind of actions when creating new Unity packages.
 The constructor does nothing more than is outlined in [Unity's instructions](https://docs.unity3d.com/2022.2/Documentation/Manual/CustomPackages.html)
-on creating custom packages. It just does it automatically, saving your valuable time.
+on creating custom packages. It just does it automatically, saving your valuable time
 
 # Installation
 
