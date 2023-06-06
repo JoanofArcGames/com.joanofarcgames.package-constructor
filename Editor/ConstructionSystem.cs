@@ -1,25 +1,20 @@
 #if UNITY_EDITOR
 using System.IO;
 using System.Text.RegularExpressions;
+using UnityEditor;
 using UnityEngine;
 
 namespace JoanofArcGames.PackageConstructor
 {
 	public static class ConstructionSystem
 	{
-		private const string PascalCasePattern = @"^(?:[A-Z][a-z0-9]*)+(\.([A-Z][a-z0-9]*)+)*$";
-		private const string SemVerPattern = @"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$";
-		private const string UnityVersionPattern = @"^([1-9]\d{3})\.([1-9]\d{0})$";
-		private const string UnityReleasePattern = @"^(\d{0,2})([abf])(\d{0,2})$";
-		private const string PackagePattern = @"^([a-z0-9\-_]+)(\.[a-z0-9\-_]+)(\.[a-z0-9\-_]+)+$";
-
 		public static void Construct(ConfigData config)
 		{
 			Debug.Log("Started construction");
 
-			if (!ValidateConfig(ref config))
+			if (!ConfigValidationSystem.Validate(ref config))
 			{
-				Debug.LogError("Fatal: provided config contains invalid data.\nCorrect config file and try again.\nAborting construction");
+				Debug.LogError("Fatal: config validation failed.\nCorrect config file and try again.\nAborting construction");
 				return;
 			}
 
@@ -42,6 +37,9 @@ namespace JoanofArcGames.PackageConstructor
 			CreateAsmdefs(root, templatesPath, ref config);
 			CreatePackageManifest(root, ref data);
 			CreateMarkdownFiles(root, templatesPath, ref config);
+			
+			AssetDatabase.Refresh();
+			UnityEditor.PackageManager.Client.Resolve();
 			
 			Debug.Log("Construction has finished successfully");
 		}
@@ -147,15 +145,6 @@ namespace JoanofArcGames.PackageConstructor
 			}
 			Directory.CreateDirectory(root);
 			return true;
-		}
-
-		private static bool ValidateConfig(ref ConfigData config)
-		{
-			bool valid = true;
-
-
-
-			return valid;
 		}
 
 		private static ManifestData ConfigToManifest(ref ConfigData config)
