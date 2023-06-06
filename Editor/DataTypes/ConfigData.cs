@@ -30,6 +30,7 @@ namespace JoanofArcGames.PackageConstructor
 		public bool changelogMD;
 		public bool licenseMD;
 		public bool thirdpartyMD;
+		public bool enableLogging;
 	}
 }
 #endif

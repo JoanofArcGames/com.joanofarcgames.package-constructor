@@ -119,6 +119,8 @@ namespace JoanofArcGames.PackageConstructor
 	    [Indent(1)]
 	    [DisplayName("Include blank scripts")]
 	    public bool blankScripts = true;
+	    [Indent(1)]
+	    public bool enableLogging;
 
 	    [Space(30)]
 	    
@@ -160,7 +162,8 @@ namespace JoanofArcGames.PackageConstructor
 			    readmeMD = readmeMD,
 			    changelogMD = changelogMD,
 			    licenseMD = licenseMD,
-			    thirdpartyMD = thirdpartyMD
+			    thirdpartyMD = thirdpartyMD,
+			    enableLogging = enableLogging
 		    };
 	    }
     }

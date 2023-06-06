@@ -10,7 +10,8 @@ namespace JoanofArcGames.PackageConstructor
 	{
 		public static void Construct(ConfigData config)
 		{
-			Debug.Log("Started construction");
+			LogSystem.enabled = config.enableLogging;
+			LogSystem.Log("Started construction");
 
 			if (!ConfigValidationSystem.Validate(ref config))
 			{
@@ -41,7 +42,7 @@ namespace JoanofArcGames.PackageConstructor
 			AssetDatabase.Refresh();
 			UnityEditor.PackageManager.Client.Resolve();
 			
-			Debug.Log("Construction has finished successfully");
+			LogSystem.Log("Construction has finished successfully");
 		}
 
 		private static void CreateMarkdownFiles(string root, string templatesPath, ref ConfigData config)
