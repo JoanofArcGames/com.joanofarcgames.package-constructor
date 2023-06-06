@@ -14,12 +14,15 @@ namespace JoanofArcGames.PackageConstructor
 	    
 	    [Indent(1)]
 	    [DisplayName("Version*")]
+        [Tooltip("Should be SemVer compatible")]
 	    public string version = "0.1.0-pre.1";
 	    [Indent(1)]
 	    [DisplayName("Company Name*")]
+	    [Tooltip("Should be PascalCase")]
 	    public string companyName = "SampleCompany";
 	    [Indent(1)]
 	    [DisplayName("Package Name*")]
+	    [Tooltip("Should be PascalCase")]
 	    public string packageName = "SamplePackage";
 	    [Indent(1)]
 	    public string displayName = "";
