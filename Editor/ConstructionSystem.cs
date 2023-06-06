@@ -27,7 +27,6 @@ namespace JoanofArcGames.PackageConstructor
 			string projectRoot = Directory.GetParent(Application.dataPath)!.FullName;
 			string templatesPath = Path.Combine(projectRoot, "Packages", "com.joanofarcgames.package-constructor", "Editor", "Templates");
 			
-			
 			if (!CreateRoot(projectRoot, data.name, out string root))
 			{
 				Debug.LogError($"Fatal: package with constructed name: {data.name} already exists.\nAborting construction");
@@ -37,10 +36,43 @@ namespace JoanofArcGames.PackageConstructor
 			string testsPath = Path.Combine(root, "Tests");
 
 			CreateDirectoryLayout(root, testsPath, ref config);
-			CreateTemplateDocumentation(templatesPath, root, ref config);
+			CreateTemplateDocumentation(root, templatesPath, ref config);
 			CreateBlankScripts(root, testsPath, ref config);
+			CreateAsmdefs(root, templatesPath, ref config);
 			
 			Debug.Log("Construction has finished successfully");
+		}
+
+		private static void CreateAsmdefs(string root, string templatesPath, ref ConfigData config)
+		{
+			if (config.editor)
+			{
+				string file = File.ReadAllText(Path.Combine(templatesPath, "editor-asmdef", "editor.asmdef"));
+				string name = $"{config.companyName}.{config.packageName}.Editor";
+				file = file.Replace("editor", name);
+				File.WriteAllText(Path.Combine(root, "Editor", $"{name}.asmdef"), file);
+			}
+			if (config.runtime)
+			{
+				string file = File.ReadAllText(Path.Combine(templatesPath, "runtime-asmdef", "runtime.asmdef"));
+				string name = $"{config.companyName}.{config.packageName}";
+				file = file.Replace("runtime", name);
+				File.WriteAllText(Path.Combine(root, "Runtime", $"{name}.asmdef"), file);
+			}
+			if (config.testsEditor)
+			{
+				string file = File.ReadAllText(Path.Combine(templatesPath, "tests-editor-asmdef", "tests-editor.asmdef"));
+				string name = $"{config.companyName}.{config.packageName}.Editor.Tests";
+				file = file.Replace("tests-editor", name);
+				File.WriteAllText(Path.Combine(root, "Tests", "Editor", $"{name}.asmdef"), file);
+			}
+			if (config.testsRuntime)
+			{
+				string file = File.ReadAllText(Path.Combine(templatesPath, "tests-runtime-asmdef", "tests-runtime.asmdef"));
+				string name = $"{config.companyName}.{config.packageName}.Tests";
+				file = file.Replace("tests-runtime", name);
+				File.WriteAllText(Path.Combine(root, "Tests", "Runtime", $"{name}.asmdef"), file);
+			}
 		}
 
 		private static void CreateBlankScripts(string root, string testsPath, ref ConfigData config)
@@ -58,7 +90,7 @@ namespace JoanofArcGames.PackageConstructor
 			}
 		}
 
-		private static void CreateTemplateDocumentation(string templatesPath, string root, ref ConfigData config)
+		private static void CreateTemplateDocumentation(string root, string templatesPath, ref ConfigData config)
 		{
 			string docsPath = Path.Combine(root, "Documentation~");
 			if (config.templateDocs && Directory.Exists(docsPath))
