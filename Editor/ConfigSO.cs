@@ -103,7 +103,7 @@ namespace JoanofArcGames.PackageConstructor
 	    public bool licenseMD = true;
 	    [Indent(1)]
 	    [DisplayName("Third Party Notices.md")]
-	    public bool thirdpartyMD = true;
+	    public bool thirdpartyMD;
 	    
 	    [Space(10)]
 	    [Header("Miscellaneous")]
