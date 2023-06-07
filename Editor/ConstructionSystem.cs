@@ -66,32 +66,35 @@ namespace JoanofArcGames.PackageConstructor
 
 		private static void CreateAsmdefs(string root, string templatesPath, ref ConfigData config)
 		{
+			string assemblyCoreName = $"{config.companyName}.{config.packageName}";
 			if (config.editor)
 			{
 				string file = File.ReadAllText(Path.Combine(templatesPath, "editor-asmdef", "editor.asmdef"));
-				string name = $"{config.companyName}.{config.packageName}.Editor";
+				string name = $"{assemblyCoreName}.Editor";
 				file = file.Replace("editor", name);
 				File.WriteAllText(Path.Combine(root, "Editor", $"{name}.asmdef"), file);
 			}
 			if (config.runtime)
 			{
 				string file = File.ReadAllText(Path.Combine(templatesPath, "runtime-asmdef", "runtime.asmdef"));
-				string name = $"{config.companyName}.{config.packageName}";
-				file = file.Replace("runtime", name);
-				File.WriteAllText(Path.Combine(root, "Runtime", $"{name}.asmdef"), file);
+				file = file.Replace("runtime", assemblyCoreName);
+				File.WriteAllText(Path.Combine(root, "Runtime", $"{assemblyCoreName}.asmdef"), file);
 			}
 			if (config.testsEditor)
 			{
 				string file = File.ReadAllText(Path.Combine(templatesPath, "tests-editor-asmdef", "tests-editor.asmdef"));
-				string name = $"{config.companyName}.{config.packageName}.Editor.Tests";
+				string name = $"{assemblyCoreName}.Editor.Tests";
 				file = file.Replace("tests-editor", name);
+				file = file.Replace("editor", $"{assemblyCoreName}.Editor");
+				file = file.Replace("runtime", $"{assemblyCoreName}");
 				File.WriteAllText(Path.Combine(root, "Tests", "Editor", $"{name}.asmdef"), file);
 			}
 			if (config.testsRuntime)
 			{
 				string file = File.ReadAllText(Path.Combine(templatesPath, "tests-runtime-asmdef", "tests-runtime.asmdef"));
-				string name = $"{config.companyName}.{config.packageName}.Tests";
+				string name = $"{assemblyCoreName}.Tests";
 				file = file.Replace("tests-runtime", name);
+				file = file.Replace("runtime", $"{assemblyCoreName}");
 				File.WriteAllText(Path.Combine(root, "Tests", "Runtime", $"{name}.asmdef"), file);
 			}
 		}
