@@ -92,7 +92,7 @@ and [semver](https://semver.org) versions
 
 ### Keywords
 
-Keywords are used my the Package Manager search APIs. This helps users find relevant packages
+Keywords are used by the Package Manager search APIs. This helps users find relevant packages
 
 ### Author
 
