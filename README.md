@@ -116,6 +116,7 @@ Put your code/assets that are supposed to work anywhere besides Unity editor in 
 ### `/Tests/Editor/` and `/Tests/Runtime/`
 
 Tests for code in `/Editor/` and `/Runtime/` directories, correspondingly.
+<br />Note: to be able to run tests, `com.unity.test-framework` has to be installed in your project.
 <br />See [Unity Manual](https://docs.unity3d.com/Manual/cus-tests.html) for details.
 
 ### `/Samples~/`
