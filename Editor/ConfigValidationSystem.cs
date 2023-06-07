@@ -79,6 +79,18 @@ namespace JoanofArcGames.PackageConstructor
 				valid = false;
 			}
 
+			if (!config.editor && config.testsEditor)
+			{
+				LogSystem.LogWarning($"Warning: /Editor/ directory is not created, so /Tests/Editor/ directory will not be created");
+				config.testsEditor = false;
+			}
+			
+			if (!config.runtime && config.testsRuntime)
+			{
+				LogSystem.LogWarning($"Warning: /Runtime/ directory is not created, so /Tests/Runtime/ directory will not be created");
+				config.testsRuntime = false;
+			}
+
 			return valid;
 		}
 	}
