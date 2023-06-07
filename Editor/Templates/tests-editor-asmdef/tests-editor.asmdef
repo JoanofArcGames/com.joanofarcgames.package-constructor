@@ -1,6 +1,13 @@
 {
-    "name": "tests-editor",
-    "includePlatforms": [
-        "Editor"
-    ]
+	"name": "tests-editor",
+	"references": [
+		"editor",
+		"runtime"
+	],
+	"optionalUnityReferences": [
+		"TestAssemblies"
+	],
+	"includePlatforms": [
+		"Editor"
+	]
 }
