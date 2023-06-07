@@ -12,6 +12,22 @@ The goal is to reduce friction and number of boilerplate-kind of actions when cr
 The constructor does nothing more than is outlined in [Unity's instructions](https://docs.unity3d.com/2022.2/Documentation/Manual/CustomPackages.html)
 on creating custom packages. It just does it automatically, saving your valuable time.
 
+# Supported platforms
+
+As I don't have necessary capabilities to thoroughly test package on various OS and setups, I encourage anyone who has tried it
+and it worked for them to report it.
+There's nothing platform-specific or unity-version-specific in what this package does, so it *should* work, but I cannot guarantee it.
+
+### Unity
+
+Package has been tested and confirmed to work on Unity 2022.2.18f1 and 2022.3.0f1.
+It *should* work on any Unity version that supports Unity Package Manager GUI (2018.1+).
+
+### Operating system
+
+Package has been tested and confirmed to work on Windows 11 22H2.
+It *should* work on any OS.
+
 # Installation
 
 ### Brief
